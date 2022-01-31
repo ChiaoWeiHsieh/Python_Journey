@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 30 09:28:08 2022
+
+@author: Wilson Wei
+"""
+
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+# Creat a class Circle
+
+class Circle(object):
+    #constructor
+    def __init__(self, radius=3, colour="red"):
+        self.radius = radius
+        self.colour = colour
+
+# Method
+    def add_radius(self, r):
+        self.radius = self.radius + r
+        return(self.radius)
+
+# Method
+    def drawCircle(self):
+        plt.gca().add_patch(plt.Circle((0, 0), radius=self.radius, fc=self.colour))
+        plt.axis("scaled")
+        plt.show()
+        
+# Creat a class Rectangle
+
+class Rectangle(object):
+    
+    def __init__(self, width=5, height=10, colour="orange"):
+        self.width = width
+        self.height = height
+        self.colour = colour
+
+    def drawRectangle(self):
+        plt.gca().add_patch(plt.Rectangle((0, 0), width=self.width, height=self.height, fc=self.colour))
+        plt.axis("scaled")
+        plt.show()
+
+YellowCircle = Circle(5, "yellow")
+print("The radius of the object: ", YellowCircle.radius)
+YellowCircle.drawCircle()
+YellowCircle.add_radius(2)
+print("The radius of the object after applying the method add_radius(2): ", YellowCircle.radius)
+YellowCircle.drawCircle()
+
+DefaultRectangle = Rectangle()
+DefaultRectangle.drawRectangle()

@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jan 30 18:54:58 2022
+
+@author: Wilson Wei
+"""
+
+class analysedText(object):
+    
+    def __init__(self, fmtText):
+        self.fmtText = ((((fmtText.lower()).replace(".", "")).replace("!", "")).replace(",", "")).replace("?", "")
+        #A = text.lower()
+        #B = A.replace(".", "")
+        #C = B.replace("!", "")
+        #D = C.replace(",", "")
+        #fmtText = D.replace("?", "")
+        #self.text = fmtText
+    
+    def freqAll(self):
+        wordlist = self.fmtText.split() # We can use the attributes from the constructor
+        print(wordlist)
+        wordlist.sort()
+        # Use set() to remove duplicates and convert the set to the list for indexing (set has no index)
+        unique_wordlist = list(set(wordlist))
+        dictionary = {}
+        i = 0
+        while i < len(unique_wordlist):# i < len() because i starts from 0
+            frequency = wordlist.count(unique_wordlist[i])
+            dictionary[unique_wordlist[i]] = frequency
+            i = i + 1
+        print(dictionary)
+    
+    def freqOf(self, word):
+        wordlist = self.fmtText.split()
+        wordfreq = wordlist.count(word)
+        print("The word", word, "appears in the sentence:", wordfreq, "times.")
+        return(wordfreq)
+fmtText = "test test. I am testing whether this class of the Text Analysis has been completed"
+x = analysedText(fmtText)    
+x.freqAll()
+x.freqOf("test")

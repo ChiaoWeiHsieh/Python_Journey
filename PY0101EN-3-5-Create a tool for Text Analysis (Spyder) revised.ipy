@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jan 31 08:20:36 2022
+
+@author: Wilson Wei
+"""
+
+class analysedText(object):
+    # define the Constructor
+    def __init__(self, QQ): # The attribute text here allows the object to receive an input
+        # It seems if we want to use two or more string methods successively, we do not require to use ()
+        self.fmtText = QQ.lower().replace(".", "").replace("!", "").replace(",", "").replace("?", "")
+                
+    # define a Method to return a dictionary containing unique words from a sentence and the frequency of each word appearing in the sentence
+    def freqAll(self):
+        wordlist = self.fmtText.split()
+        print("The breakdown of the sentence is:", wordlist)
+        dictionary = {} # Create an empty dictionary
+        # Use a for loop and set() to make sure words that are added into the dictionary are not duplicated
+        for word in set(wordlist): 
+            # Key-Value (Word-Frequency)
+            dictionary[word] = wordlist.count(word)
+        print(dictionary)
+        return dictionary
+    
+    # define a Method to return the frequency of the word passed in argument
+    def freqOf(self, word):
+        dictionary = self.freqAll()
+        if word in dictionary: # if we don't use the if statement here, an error would occur when the input is the word that is not in the sentence
+            print("The word", "'", word, "'", "has appearred in the sentence", dictionary[word],"times.")
+        else:
+            print("The word", "'", word, "'", "is not in the sentence.")
+    
+fmtText = "test test. I am testing whether this class of the Text Analysis has been completed"
+x = analysedText(fmtText)    
+x.freqAll()
+x.freqOf("AaA")
